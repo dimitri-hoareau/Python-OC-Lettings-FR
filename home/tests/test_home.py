@@ -11,4 +11,5 @@ def test_book_infos_view():
     response = client.get(path)
 
     assert response.status_code == 200
+    assert b"<h1>Welcome to Holiday Homes</h1>" in response.content
     assertTemplateUsed(response, "home/index.html")
