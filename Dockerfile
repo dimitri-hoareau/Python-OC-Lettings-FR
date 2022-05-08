@@ -1,5 +1,3 @@
-
-
 # pull the official base image
 FROM python:3
 
