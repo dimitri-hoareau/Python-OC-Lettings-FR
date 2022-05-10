@@ -1,1 +1,1 @@
-web:gunicorn oc-lettings-974.wsgi
+web:gunicorn oc-lettings-974.wsgi --log-file -
