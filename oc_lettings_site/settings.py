@@ -15,7 +15,7 @@ SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -68,14 +68,24 @@ WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'oc_lettings',
+        'USER': 'oc_lettings',
+        'PASSWORD': 'oc_lettings',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -106,7 +116,8 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+#set USE_TZ to False to connect to postgresql
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
