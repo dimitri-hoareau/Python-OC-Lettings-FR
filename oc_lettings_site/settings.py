@@ -119,7 +119,7 @@ USE_I18N = True
 USE_L10N = True
 
 #set USE_TZ to False to connect to postgresql
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
