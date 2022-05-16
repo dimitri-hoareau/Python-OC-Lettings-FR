@@ -148,8 +148,8 @@ options.pop('sslmode', None)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 sentry_sdk.init(
-    # dsn="https://9e8d1923e7c240f39d8838a7a96c0c21@o1249395.ingest.sentry.io/6409917",
-    dsn=config['SENTRY_KEY'],
+    dsn="https://9e8d1923e7c240f39d8838a7a96c0c21@o1249395.ingest.sentry.io/6409917",
+    # dsn=config['SENTRY_KEY'],
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
@@ -162,6 +162,3 @@ sentry_sdk.init(
     send_default_pii=True
 )
 
-
-print(config['SENTRY_KEY'])
-print(type(config['SENTRY_KEY']))
