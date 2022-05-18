@@ -37,6 +37,7 @@
 
 
 version: 2  # Version of CircleCI
+
 jobs:
   build:
     docker:
@@ -81,3 +82,11 @@ jobs:
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
             docker push dimitridockerhoareau/oc_lettings_site:latest
+
+orbs:
+  heroku: circleci/heroku@0.0.10
+  
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
