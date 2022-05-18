@@ -45,7 +45,7 @@ workflows:
   heroku_deploy:
     jobs:
       - build
-      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+      - deploy:
           requires:
             - build
           filters:
@@ -96,6 +96,17 @@ jobs:
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
             docker push dimitridockerhoareau/oc_lettings_site:latest
+
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          command: >
+            echo "The command above installs Heroku, the command below deploys.
+            What you do inbetween is up to you!"
+      - heroku/deploy-via-git
 
 
 
