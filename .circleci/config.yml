@@ -38,17 +38,15 @@
 
 version: 2  # Version of CircleCI
 
+orbs:
+  heroku: circleci/heroku@0.0.10
+  
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
+
 jobs:
-
-  orbs:
-    heroku: circleci/heroku@0.0.10
-    
-  workflows:
-    heroku_deploy:
-      jobs:
-        - heroku/deploy-via-git
-
-
   build:
     docker:
       - image: python:3.8
