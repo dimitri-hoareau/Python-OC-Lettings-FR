@@ -39,6 +39,16 @@
 version: 2  # Version of CircleCI
 
 jobs:
+
+  orbs:
+    heroku: circleci/heroku@0.0.10
+    
+  workflows:
+    heroku_deploy:
+      jobs:
+        - heroku/deploy-via-git
+
+
   build:
     docker:
       - image: python:3.8
@@ -83,10 +93,4 @@ jobs:
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
             docker push dimitridockerhoareau/oc_lettings_site:latest
 
-orbs:
-  heroku: circleci/heroku@0.0.10
-  
-workflows:
-  heroku_deploy:
-    jobs:
-      - heroku/deploy-via-git
+
