@@ -88,7 +88,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 ### Résumé du fonctionnement
 
 conteneur docker dockerfile
-circleci pipeline cnfig.yml
+circleci pipeline cnfig.yml, relier à mon repo github
 déploiement sur heroku profile
 process automatisé à chaque push github, branche master déploiement heroku, reste conteneurisation et test sur circleci
 
@@ -96,14 +96,15 @@ process automatisé à chaque push github, branche master déploiement heroku, r
 ### récupérer image docker sur le hub
 
 commande
-migration
+aller sur localhost:8000
 
-#### Cloner le repository
-
+#### Déploiement sur Heroku
 - `cd /path/to/put/project/in`
 - `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
 
-#### Créer l'environnement virtuel
+#### Suivi sur Sentry
+
+ajouter hash sentry dans .env
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `python -m venv venv`
