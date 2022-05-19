@@ -99,6 +99,10 @@ commande
 aller sur localhost:8000
 
 #### Déploiement sur Heroku
+
+créer app
+heroku postgres
+settings var environnemnt, avec la var de la bdd créee sous HEROKU_POSTGRESQL_BRONZE_URL
 - `cd /path/to/put/project/in`
 - `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
 
