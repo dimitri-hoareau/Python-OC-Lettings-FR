@@ -57,7 +57,9 @@ jobs:
           name: Push to Docker Hub
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            docker tag dimitridockerhoareau/oc_lettings_site:latest dimitridockerhoareau/oc_lettings_site:hash
             docker push dimitridockerhoareau/oc_lettings_site:latest
+            docker push mybuild:dimitridockerhoareau/oc_lettings_site
 
   deploy:
     executor: heroku/default

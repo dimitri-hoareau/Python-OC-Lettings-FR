@@ -101,9 +101,10 @@ aller sur localhost:8000
 #### Déploiement sur Heroku
 
 créer app
-heroku postgres
+configure add-on, heroku postgres
 settings var environnemnt, avec la var de la bdd créee sous HEROKU_POSTGRESQL_BRONZE_URL
-- `cd /path/to/put/project/in`
+to migrate data from sqlite3
+- `heroku run python3 manage.py loaddata whole.json -a oc-lettings-974`
 - `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
 
 #### Suivi sur Sentry
