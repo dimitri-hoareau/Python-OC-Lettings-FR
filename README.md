@@ -85,41 +85,39 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ## Production
 
+### Prérequis
+
+- Docker installé en local avec un compte hub.docker
+- Compte sur circleCI
+- heroku installé en local avec un compte sur heroku
+
 ### Résumé du fonctionnement
 
-conteneur docker dockerfile
-circleci pipeline cnfig.yml, relier à mon repo github
-déploiement sur heroku profile
-process automatisé à chaque push github, branche master déploiement heroku, reste conteneurisation et test sur circleci
+La compilation et les tests se font par l'intermédiaire de circleCI lors du push sur une branche, ils sont parametrés dans .circlci/config.yml. Pour celà l'application circleci doit être relié au dépot github du projet.
+Le déploiement se fait sur heroku après un push sur la branche master, si la compilation et les test se sont déroulés avec succés. 
 
+### récupérer une image docker sur le hub
 
-### récupérer image docker sur le hub
-
-commande
-aller sur localhost:8000
+- `docker pull dimitridockerhoareau/oc_lettings_site && docker run -e DATABASE_URL=sqlite:///oc-lettings-site.sqlite3 -p 8000:8000 dimitridockerhoareau/`
+Si une migration est nécessaire :
+- Récupérer l'id du container :
+- `docker ps -a`
+- Récupérer l'id du container :
+- `docker exec -t -i <id> bash`
+- `python manage.py migrate`
+- Aller sur localhost:8000 pour lancer l'application
 
 #### Déploiement sur Heroku
 
-créer app
-configure add-on, heroku postgres
-settings var environnemnt, avec la var de la bdd créee sous HEROKU_POSTGRESQL_BRONZE_URL
-to migrate data from sqlite3
+- Créer l'application sur heroku :
+- `heroku create oc-lettings-974`
+- Configurer une BDD postgres pour heroku :
+- ` heroku addons:create heroku-postgresql:hobby-dev`
+- (Facultatif) Migrer les données de la base de donnée locale en production :
 - `heroku run python3 manage.py loaddata whole.json -a oc-lettings-974`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+
 
 #### Suivi sur Sentry
 
-ajouter hash sentry dans .env
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-`which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
-
-#### Exécuter le site
-
+Ajouter les hash de Sentry dans le fichier .env  
+- `SENTRY_KEY=<sentry_url>`
